@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Evento Acadêmico</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <script src="assets/javascript/mapa.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <h1>Registre um evento acadêmico</h1>
+    </div>
+    <div id="container">
+        <div id="divform">
+            <div class="caixa">
+                <div class="form">
+                    <form method="post">
+                        <div>
+                            <label for="descricao">
+                                <p id="descricao-label">Descrição:</p>
+                            </label>
+                            <input type="text" id="descricao" placeholder="insira a aqui" />
+                        </div>
+                        <div>
+                            <button type="button" onclick="salvarPonto()">Salvar</button>
+                        </div>
+                        <div>
+                            <button type="button" onclick="listarPontos()">Listar</button>
+                        </div>
+                    </form>
+                    <div>
+                        <table id="pontos-table">
+                            <thead>
+                                <tr>
+                                    <th>Descrição</th>
+                                    <th>Latitude</th>
+                                    <th>Longitude</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="map"></div>
+    </div>
+
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEMcDUIgQaB6cas9mAEKlbJ8BvoqUU6cA&callback=initMap"
+      async
+    ></script>
+  </body>
+</html>
