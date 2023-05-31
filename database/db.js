@@ -1,18 +1,12 @@
-const { Sequelize } = require('sequelize');
+const mongoose = require('mongoose');
 
-const sequelize = new Sequelize('banco', 'postgres', 'postgres', {
-  host: 'localhost',
-  port: '5432',
-  dialect: 'postgres',
-});
-
-(async () => {
-  try {
-    await sequelize.authenticate();
+mongoose.connect('mongodb+srv://lukas:<lukas>@cluster0.d5xci.mongodb.net/?retryWrites=true&w=majority', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+  .then(() => {
     console.log('Conexão com o banco de dados estabelecida com sucesso.');
-  } catch (error) {
+  })
+  .catch((error) => {
     console.error('Erro ao conectar ao banco de dados:', error);
-  }
-})();
-
-module.exports = sequelize;
+  });

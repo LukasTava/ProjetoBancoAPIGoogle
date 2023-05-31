@@ -1,23 +1,26 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../database/db.js');
+const mongoose = require('mongoose');
 
-const Ponto = sequelize.define('ponto', {
-  ID: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
+const PontoSchema = new mongoose.Schema({
+  id: {
+    type: Number,
+    required: true,
     autoIncrement: true,
     primaryKey: true
   },
-  Descricao: {
-    type: DataTypes.STRING,
-    allowNull: false
+  titulo:{
+    type:String,
+    required:true
   },
-  Geometria: {
-    type: DataTypes.GEOMETRY('POINT'),
-    allowNull: false
+  descricao: {
+    type: String,
+    required: true
   },
-}, {
-  tableName: 'ponto',
+  geometria: {
+    type: mongoose.Schema.Types.Geometry('Point'),
+    required: true
+  },
 });
+
+const Ponto = mongoose.model('Ponto', PontoSchema);
 
 module.exports = Ponto;
