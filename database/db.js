@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
+require('dotenv').config();
 
 const conectarBanco = async () => {
   try {
-    await mongoose.connect('mongodb+srv://lukas:24iOn1HWqhAg5Ruz@cluster0.d5xci.mongodb.net/?retryWrites=true&w=majority', {
+    await mongoose.connect(process.env.MONGODB_URL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
