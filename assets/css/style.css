@@ -53,6 +53,12 @@ h1 {
 
 }
 
+#titulo{
+    font-size: x-large;
+    font-family: sans-serif;
+    text-shadow: 4px 4px 4px gray;
+}
+
 #descricao{
     font-size: x-large;
     font-family: sans-serif;
@@ -80,4 +86,14 @@ button:hover {
 .lista {
     text-align: center;
     font-family: sans-serif;
+}
+
+.ponto-titulo {
+    max-width: 100px;
+    word-wrap: break-word; 
+}
+
+.ponto-descricao {
+    max-width: 150px; 
+    word-wrap: break-word; 
 }

@@ -1,39 +1,23 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-const Ponto = require('./models/Ponto'); 
-const sequelize = require('./database/db');
+const conectarBanco = require('./database/db');
+const PontoRouter = require('./routes/PontoRouter');
 const cors = require('cors');
+
 const app = express();
+const PORT = 3000;
 
-app.use(bodyParser.json());
-app.use(cors());
+conectarBanco();
 
-sequelize.sync()
-  .then(() => {
-    console.log('Tabela criada com sucesso');
-  })
-  .catch((error) => {
-    console.error('Erro ao criar a tabela:', error);
-  });
+app.use(cors({ origin: 'http://127.0.0.1:5500' }));
 
-app.post('/pontos', async (req, res) => {
-  try {
-    const ponto = await Ponto.create(req.body);
-    res.status(201).json(ponto);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Erro ao criar ponto' });
-  }
+app.use(express.json());
+
+app.use(PontoRouter);
+
+app.get('/', (req, res) => {
+  res.send('Bem-vindo à API de Pontos!');
 });
 
-app.get('/pontos', async (req, res) => {
-  try {
-    const pontos = await Ponto.findAll();
-    res.json(pontos);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Erro ao buscar pontos' });
-  }
+app.listen(PORT, () => {
+  console.log(`Servidor rodando em http://localhost:${PORT}`);
 });
-
-app.listen(3000, () => console.log('Servidor iniciado na porta 3000'));

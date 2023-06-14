@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang = "pt">
 
 <head>
     <meta charset="utf-8">
     <title>Evento Acadêmico</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <script src="assets/javascript/mapa.js"></script>
@@ -19,10 +20,16 @@
                 <div class="form">
                     <form method="post">
                         <div>
+                            <label for="titulo">
+                                <p id="titulo-label">Título:</p>
+                            </label>
+                            <input type="text" id="titulo" name="titulo" placeholder="insira aqui" />
+                        </div>
+                        <div>
                             <label for="descricao">
                                 <p id="descricao-label">Descrição:</p>
                             </label>
-                            <input type="text" id="descricao" placeholder="insira a aqui" />
+                            <textarea id="descricao" name="descricao" placeholder="insira aqui"></textarea>
                         </div>
                         <div>
                             <button type="button" onclick="salvarPonto()">Salvar</button>
@@ -35,9 +42,11 @@
                         <table id="pontos-table">
                             <thead>
                                 <tr>
+                                    <th>Título</th>
                                     <th>Descrição</th>
                                     <th>Latitude</th>
                                     <th>Longitude</th>
+                                    <th>Ações</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -47,10 +56,8 @@
                 </div>
             </div>
         </div>
-
         <div id="map"></div>
     </div>
-
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEMcDUIgQaB6cas9mAEKlbJ8BvoqUU6cA&callback=initMap"
       async
