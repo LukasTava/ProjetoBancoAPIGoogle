@@ -90,8 +90,11 @@ function listarPontos() {
             <td>${latitude}</td>
             <td>${longitude}</td>
             <td>
-              <button onclick="deletarPonto('${_id}')">Excluir</button>
+            <td>
+            <button onclick="gostarPonto('${_id}')">Gostar</button>
+            <button onclick="deletarPonto('${_id}')">Excluir</button>
               <button onclick="atualizarPonto('${_id}')">Atualizar</button>
+            </td>
             </td>
           </tr>
         `;
@@ -181,5 +184,32 @@ function atualizarPonto(_id) {
     .catch((error) => {
       console.error(error);
       alert("Falha ao atualizar ponto.");
+    });
+}
+
+function gostarPonto(idPonto) {
+  const token = localStorage.getItem('chave');
+
+  if (!token) {
+    alert('Você precisa estar autenticado para gostar de um ponto.');
+    return;
+  }
+
+  fetch(`http://localhost:3000/pontos/${idPonto}/gostar`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`, 
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Falha ao gostar do ponto.');
+      }
+      alert('Ponto gostado com sucesso!');
+    })
+    .catch((error) => {
+      console.error(error);
+      alert('Falha ao gostar do ponto.');
     });
 }
